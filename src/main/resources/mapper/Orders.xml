@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.dao.OrdersDao">
+
+
+    <select id="select1" resultType="com.example.demo.Orders">
+        select * from orders where user_id=#{userId}
+    </select>
+
+    <insert id="insert1">
+        insert into orders(user_id) values (#{userId});
+    </insert>
+
+    <select id="select1In" resultType="com.example.demo.Orders">
+        select * from orders where user_id
+        in
+        <foreach collection="userIds" open="(" close=")" separator="," item="item">
+            #{item}
+        </foreach>
+    </select>
+</mapper>
